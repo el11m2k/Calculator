@@ -1,0 +1,37 @@
+Dependencies for Project 'Calculator', Target 'Target 1': (DO NOT MODIFY !)
+F (.\main.c)(0x547A2DCB)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I "C:\Users\Mark\Desktop\NEW ELEC\Week 9\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (main.h)(0x547A20C2)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5419F1DA)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5419F1DC)
+I (KEYPAD_Driver.h)(0x5474DD6F)
+I (LCD_Driver.h)(0x547A25AE)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\tm4c123gh6pm.h)(0x530F0F16)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm4.h)(0x53FC863A)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419F1DA)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h)(0x53FF470A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmFunc.h)(0x53FF470A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmSimd.h)(0x53FC863A)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6F216)
+F (.\KEYPAD_Driver.c)(0x547A2D2B)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I "C:\Users\Mark\Desktop\NEW ELEC\Week 9\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\keypad_driver.o --omf_browse .\keypad_driver.crf --depend .\keypad_driver.d)
+I (main.h)(0x547A20C2)
+I (KEYPAD_Driver.h)(0x5474DD6F)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\tm4c123gh6pm.h)(0x530F0F16)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm4.h)(0x53FC863A)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419F1DA)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h)(0x53FF470A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmFunc.h)(0x53FF470A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmSimd.h)(0x53FC863A)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6F216)
+F (.\LCD_Driver.c)(0x547A2954)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I "C:\Users\Mark\Desktop\NEW ELEC\Week 9\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\lcd_driver.o --omf_browse .\lcd_driver.crf --depend .\lcd_driver.d)
+I (main.h)(0x547A20C2)
+I (LCD_Driver.h)(0x547A25AE)
+F (RTE\Device\TM4C123GH6PM\startup_TM4C123.s)(0x51B6E406)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I "C:\Users\Mark\Desktop\NEW ELEC\Week 9\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123--pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1"--list .\startup_tm4c123.lst --xref -o .\startup_tm4c123.o --depend .\startup_tm4c123.d)
+F (RTE\Device\TM4C123GH6PM\system_TM4C123.c)(0x5253AC24)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork -I "C:\Users\Mark\Desktop\NEW ELEC\Week 9\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\system_tm4c123.o --omf_browse .\system_tm4c123.crf --depend .\system_tm4c123.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419F1DA)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\TM4C123.h)(0x530F0F16)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\TM4C123GH6PM.h)(0x530F0F16)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm4.h)(0x53FC863A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h)(0x53FF470A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmFunc.h)(0x53FF470A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmSimd.h)(0x53FC863A)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6F216)

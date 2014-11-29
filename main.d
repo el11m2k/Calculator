@@ -1,0 +1,13 @@
+.\main.o: main.c
+.\main.o: main.h
+.\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\main.o: KEYPAD_Driver.h
+.\main.o: LCD_Driver.h
+.\main.o: C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\tm4c123gh6pm.h
+.\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm4.h
+.\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h
+.\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmFunc.h
+.\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmSimd.h
+.\main.o: C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\system_TM4C123.h
