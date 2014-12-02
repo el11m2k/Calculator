@@ -3,7 +3,10 @@
 #################
 
 # object files
-.o
+*.o
+*.d
+*.crf
+*.htm
 
 *.pydevproject
 .project
