@@ -1246,11 +1246,11 @@ ARM Macro Assembler    Page 20
               00000200 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\sta
-rtup_tm4c123.d -o.\startup_tm4c123.o -I"C:\Users\Mark\Desktop\NEW ELEC\Week 9\R
-TE" -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\K
-eil\TM4C_DFP\1.0.0\Device\Include\TM4C123 --predefine="__EVAL SETA 1" --predefi
-ne="_RTE_ SETA 1" --predefine="TM4C123GH6PM SETA 1" --list=.\startup_tm4c123.ls
-t RTE\Device\TM4C123GH6PM\startup_TM4C123.s
+rtup_tm4c123.d -o.\startup_tm4c123.o -I"C:\Users\Mark\Desktop\NEW ELEC\Week 10\
+Calculator\RTE" -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include -IC:\Keil_v
+5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123 --predefine="__EVAL SETA 
+1" --predefine="_RTE_ SETA 1" --predefine="TM4C123GH6PM SETA 1" --list=.\startu
+p_tm4c123.lst RTE\Device\TM4C123GH6PM\startup_TM4C123.s
 
 
 

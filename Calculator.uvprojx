@@ -423,6 +423,16 @@
               <FileType>1</FileType>
               <FilePath>.\LCD_Driver.c</FilePath>
             </File>
+            <File>
+              <FileName>Graphics.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Graphics.c</FilePath>
+            </File>
+            <File>
+              <FileName>Graphics.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Graphics.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
