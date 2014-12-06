@@ -8,20 +8,18 @@
 #include "tm4c123gh6pm.h"
 #include "string.h"
 
-unsigned long keypadKeysTotal = 0x00000001; //reset for scanning. Button data is accumulated in this variable
-int n = 0;
-unsigned char keys[4] = {0};
-char currentState = 0x00;
-char  prevState = 0x00;
+int keyArraySize = 0;								// variable to store the size of the keyArray
+unsigned char keyArray[4] = {0};		// array to store the key combo
+char currentState = 0x00;						// variable to store current keypad state
+char  prevState = 0x00;							// variable to store previous keypad state
 
 // Reads every row one by one and checks whether any column has current flowing through it. If it reads zero, it then means that either nothing is pressed or
 // multiple columns are shorted. In this case it will then re-configure the I/O and swap Rows with Columns and do the same kind of "sweep" as before.
 // Inputs: boolean type multikey - used as a flag to detect multiple keys or single keys
 // Outputs: button value coded in 32-bit number (unsigned long)
 unsigned char readKeypad(char prevStaten){
-	int i = 0;
-	unsigned char keypadReadIn = 0x00;  														// input variable into which keys are read
-	keypadKeysTotal = 0x00; 													// reset for scanning. Button data is accumulated in this variable
+	int i = 0;																							// itterator for the FOR loop
+	unsigned char keypadReadIn = 0x00;  										// input variable into which keys are read
 	
 	//Horizontal Scanning Starts here!
 	for(i=0;i<4;i++){
@@ -34,15 +32,13 @@ unsigned char readKeypad(char prevStaten){
 		// If not zero, therefore button was pressed, combine the data read which represents row information (e.g. 1010 would mean buttons 1 and 3 are pressed)
 		if(keypadReadIn){
 			keypadReadIn |= (i+1) << 4;														// add the incremented (for ease of read) i value to the whole result (e.g. 0x08-->0xi8, where i is a value from 1 to 4)
-			//keypadKeysTotal |= keypadReadIn<<(i*8); 							// add this new reading to the total variable where we stack information for multiple press recognition. Shift it to make space for other readings.
-			break;
-			//if(!multikey) break;																	// if user does not wish to detect multiple keys, the first match will be sufficient enough, hence no further execution is needed
+			break;															
 		}
 	}
 	// keypadKeysTotal is zero, therefore we had a short in columns and need to re-configure.
 	// If user asked to detect multiple-keys, code below will re-configure the I/O
 	// and then re-scan again to detect multiple presses
-	if(!keypadReadIn&&FALSE){
+	if(!keypadReadIn&&FALSE){ //DISABLED due to interrupt issue
 		//Vertical Scanning Starts here!	
 		keypadFlip(4,4,'C'); 																		// flip rows and column (change I/O-related register values)
 		for(i=0;i<4;i++){
@@ -119,40 +115,44 @@ char decodeKeyPress(unsigned char k){
 				return 0; 		// in case there was a mismatch and no key was recognised properly, return 0
 		}
 }
-
+// Interprets the key array to check for combo keys/ single presses
+// Input : array of keys
+// Output: single key found
 unsigned char readKey(void){
-	char localKeys[4] = {0};												// local array for returning
+	unsigned char localKeys[4] = {0};															// local array for returning
 	
-	SysTick_Wait_ms(40);													// de-bounce
-	currentState = readKeypad(prevState);
-	if (currentState && (currentState != prevState)){
-		prevState = currentState;
-		keys[n] = currentState;
-		n++;
+	currentState = readKeypad(prevState);									// read current keypad state
+	if (currentState && (currentState != prevState)){			// check that a key is pressed and make sure we don't record the same one twice
+		prevState = currentState;														// reset the previous state
+		keyArray[keyArraySize] = currentState;							// add new key recording to the array
+		keyArraySize++;
 	}
-	else if(!(currentState)){
-		prevState = 0x00;
-		n = 0;
-		memcpy(&localKeys,&keys,sizeof(keys));			// make a copy of "keys"
-		memset(&keys[0], 0, sizeof(keys));					// set whole "keys" array to 0
-		return interpretKeys(localKeys);
+	else if(!(currentState)){															// if currentState is 0, hence button(s) were released
+		prevState = 0x00;																		// reset the previous state variable for next reading
+		keyArraySize = 0;																		// reset n for next reading
+		memcpy(&localKeys,&keyArray,sizeof(keyArray));			// make a copy of "keys"
+		memset(&keyArray[0], 0, sizeof(keyArray));					// set whole "keys" array to 0 (reset for next reading)
+		return interpretKeys(localKeys);										// interpret the key/key-combo and return the value
 	}
 	return 0;	// left for good programming practise
 }
-	
-unsigned char interpretKeys(unsigned char* keyar){
-	if(keyar[1] == 0){													// one key pressed only return it
-		return decodeKeyPress(keyar[0]);
+
+// Interprets the key array to check for combo keys/ single presses
+// Input : array of keys
+// Output: single key found
+unsigned char interpretKeys(unsigned char* keys){
+	if(keys[1] == 0){													// one key pressed only return it
+		return decodeKeyPress(keys[0]);
 	}
-	else if(keyar[0] == 0x48){	//if star was pressed first it acts as 2nd function key
-		switch(keyar[1]){
-			case 0x11:
+	else if(keys[0] == 0x48){	//if star was pressed first it acts as 2nd function key
+		switch(keys[1]){					// check what was the second key
+			case 0x11:	//A
 				return '(';
-			case 0x21:
+			case 0x21:	//B
 				return ')';
-			case 0x31:
+			case 0x31:	//C
 				return '.';
-			case 0x49:
+			case 0x49:	//D
 				return '^';
 		}
 	}
@@ -217,11 +217,9 @@ void keypadInit(unsigned char N,unsigned char M){
 // Input: None
 // Output: None
 void GPIOB_Handler(void){
-	//SysTick_Wait_ms(10);	
-	// de-bounce
-	key = 1;																	// flag the "key" variable (any value would do, as long it's not zero)
-	GPIOB->ICR = ((1UL<<0)|(1UL<<1)|(1UL<<2)|(1UL<<3));      // acknowledge flags for PB0-3
-	//GPIOB->DATA=GPIOB->RIS;
+	SysTick_Wait_ms(10);																			// de-bounce
+	key = 1;																									// flag the "key" variable (any value would do, as long it's not zero)
+	GPIOB->ICR = ((1UL<<0)|(1UL<<1)|(1UL<<2)|(1UL<<3));      	// acknowledge flags for PB0-3
 }
 
 
@@ -260,23 +258,23 @@ void keypadFlip(unsigned char N,unsigned char M, char orientation){
 // Outputs: None
 // Once key is pressed it is written to the global variable "key", but before it is re-set down below for every read
 void WaitForKey(void){
-	key = 0; 																				// re-set the global flag value
-	GPIOB->DATA |= ((1UL<<4)|(1UL<<5)|(1UL<<6)|(1UL<<7)); 						// clear PB0,PB1 so they are ready to take inputs (Inverted logic due to internal PULL-UPs)
- 	__wfi();  																			// wait for interrupt
+	key = 0; 																								// re-set the global flag value
+	GPIOB->DATA |= ((1UL<<4)|(1UL<<5)|(1UL<<6)|(1UL<<7));		// clear PB0,PB1 so they are ready to take inputs (Inverted logic due to internal PULL-UPs)
+ 	__wfi();  																							// wait for interrupt
 }
 
 // Sets a given row high
 // Input: i - tells which row should be set active
 // Ouptu: None
 void enableRow(int i){
-	GPIOB->DATA &=~ ((1UL<<4)|(1UL<<5)|(1UL<<6)|(1UL<<7));
-	GPIOB->DATA |= (1UL<<(4+i)); 
+	GPIOB->DATA &=~ ((1UL<<4)|(1UL<<5)|(1UL<<6)|(1UL<<7));	// Reset the inputs
+	GPIOB->DATA |= (1UL<<(4+i)); 														// Activate a row
 }
 
 // Sets a given column high
 // Input: i - tells which column should be set active
 // Ouptu: None
 void enableColumn(int i){
-	GPIOB->DATA &=~ ((1UL<<0)|(1UL<<1)|(1UL<<2)|(1UL<<3));
-	GPIOB->DATA |= (1UL<<(3-i));
+	GPIOB->DATA &=~ ((1UL<<0)|(1UL<<1)|(1UL<<2)|(1UL<<3));	// Reset the inputs
+	GPIOB->DATA |= (1UL<<(3-i));														// activate the row
 }
