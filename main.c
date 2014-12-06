@@ -175,9 +175,9 @@ int mainMenu(){
 	}
 	WaitForKey();															// Re-initialises the "key" flag and waits for an interrupt (puts processor to sleep)
 	if(key){																	// if key press detected
-		testkey = readKey();
-		if(testkey){
-			lcdWriteData(testkey);
+		key = readKey();
+		if(key){
+			lcdWriteData(key);
 		}
 	}
 	/*

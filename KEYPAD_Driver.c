@@ -103,7 +103,7 @@ unsigned char readKey(void){
 		return 0;
 	}
 	else{
-	if(prevState == 0x38){	
+	if(prevState == 0x48){	
 		switch(currentState){													// check what was the second key
 			case 0x11:	//A
 				returnValue = '(';
