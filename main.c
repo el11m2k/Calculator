@@ -18,6 +18,7 @@
 
 //Global variables
 unsigned char key = 0;							// this is a global vvariable that stores the key(s) pressed
+unsigned char testkey = 0;
 
 //Local variables
 STATES state = ST_INIT;							// default state is for initialisation (ST_INIT)  
@@ -35,6 +36,7 @@ float floatTest = 0;
 // Subroutines Section
 // MAIN: Mandatory for a C Program to be executable
 int main(void){
+
   
   while(1) {												// infinite loop - main execution
     switch(state){
@@ -83,7 +85,8 @@ int regularCalculation(){
 	char* calculationString; 								//buffer used for itoa()
 	WaitForKey();
 	if(key){
-		key = decodeKeyPress(readKeypad(FALSE));	// read key and decode it, then store in global variable
+		ic++;
+		key = 0;	// read key and decode it, then store in global variable
 		if(((key-48) >= 0) && ((key-48) < 10)){		// if key decoded is between X-48 and X-48+9 then it's a number (-48 is due to ASCII)		
 			if(!numberSize && !(key-48)){ 
 				// acount for 0 if it's been pressed in the beginning, hence if number pressed was 0 and there were no previous numbers - ignore.
@@ -136,7 +139,23 @@ int regularCalculation(){
 					operations[operationSize] = 4; 	// let 1 be ADD, 2 - SUBTRACT, 3 - MULTIPLY, 4 - DIVIDE
 					operationSize++;
 				break;
-							
+				
+				case '(':
+					lcdWriteData('(');
+				break;
+				
+				case ')':
+					lcdWriteData(')');
+				break;		
+				
+				case '.':
+					lcdWriteData('.');
+				break;	
+				
+				case '^':
+					lcdWriteData('^');
+				break;		
+				
 				default:
 					return ST_REGULAR_CALCULATION; 	// Return the state as INT (enums and integers are interchangable in this context)
 			}	
@@ -151,8 +170,9 @@ int regularCalculation(){
 int mainMenu(){
 	WaitForKey();															// Re-initialises the "key" flag and waits for an interrupt (puts processor to sleep)
 	if(key){																	// if key press detected
+		testkey = readKey();		
 		ic++;																		// track the number of times interrupt was triggered (DEBUGGING)!!
-		key = decodeKeyPress(readKeypad(FALSE));	// read key and decode it, then store in global variable
+		//readKey();			// read key and decode it, then store in global variable
 		switch (key){														// decide which menu option to go to
 			case '1':
 				//OPTION 1 - REGULAR NUMERIC CALCULATIONS

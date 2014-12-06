@@ -15,8 +15,10 @@
 //////////////////////////////////////////////////////////
 void keypadInit(unsigned char N, unsigned char M);
 void keypadFlip(unsigned char N,unsigned char M, char orientation);
-char decodeKeyPress(unsigned long k);
-unsigned long readKeypad(char multikey);
+char decodeKeyPress(unsigned char k);
+unsigned char readKeypad(char prevState);
+unsigned char readKey(void);
+unsigned char interpretKeys(unsigned char* keys);
 void WaitForKey(void);
 void enableRow(int i);
 void enableColumn(int i);
