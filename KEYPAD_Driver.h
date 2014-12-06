@@ -16,9 +16,9 @@
 void keypadInit(unsigned char N, unsigned char M);
 void keypadFlip(unsigned char N,unsigned char M, char orientation);
 char decodeKeyPress(unsigned char k);
-unsigned char readKeypad(char prevState);
+unsigned char readKeypad();
 unsigned char readKey(void);
-unsigned char interpretKeys(unsigned char* keys);
+unsigned char interpretKeys();
 void WaitForKey(void);
 void enableRow(int i);
 void enableColumn(int i);

@@ -1,18 +1,10 @@
 #include "main.h"
 #include "LCD_Driver.h"
+#include "Graphics.h"
 
 // Numbers correspond to CGRAM addresses
 //{,0x01,0x02,0x03,0x04,0x05,0x06,0x07}
-unsigned char gameGraphics[8][8] = {
-	{0x03,0x0F,0x1C,0x10,0x01,0x07,0x1E,0x18},
-	{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
-	{0x03,0x0F,0x1C,0x10,0x01,0x07,0x1E,0x18},
-	{0x03,0x0F,0x1C,0x10,0x01,0x07,0x1E,0x18},
-	{0x03,0x0F,0x1C,0x10,0x01,0x07,0x1E,0x18},
-	{0x03,0x0F,0x1C,0x10,0x01,0x07,0x1E,0x18},
-	{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
-	{0x03,0x0F,0x1C,0x10,0x01,0x07,0x1E,0x18}
-};
+unsigned char gameGraphics[64];
 
 // note: 0x10 is used as an empty symbol
 
@@ -33,58 +25,28 @@ void displayFrame(void) {
 	// Write Game Graphics into CGRAM
 	setCGRAMaddr(0);
 	
-	for (i = 0; i < 8; i++) {
-		for (j = 0; j < 8; j++) {
-			lcdWriteData(gameGraphics[j][i]);
-		}
+	//getSinwave(80,0,8);
+	
+	for (i = 0; i < 64; i++) {
+		//for (j = 0; j < 8; j++) {
+			lcdWriteData(gameGraphics[i]);
+	//	}
 	}
 	
 	// Move Cursor from right to left
-	lcdWriteCommand(0x04);
+	lcdWriteCommand(0x06);
 	
-	lcdGoto(0, 16);
+	lcdGoto(0, 0);
+	lcdWriteData(0x00);
 	lcdWriteData(0x01);
+	lcdWriteData(0x02);
+	lcdWriteData(0x03);
+	lcdGoto(1,0);
+	lcdWriteData(0x04);
+	lcdWriteData(0x05);
+	lcdWriteData(0x06);
+	lcdWriteData(0x07);
 	
-	i = 0;
-	
-	for (j = 16; j >= 0; j--) {
-			
-			for (z = 0; z <= 3; z++) {
-				
-				lcdGoto(0, j);
-				SysTick_Wait_ms(150);
-				
-				switch(gameField[i][j]) {
-					case 0x00: // 2 bars (right)
-						current = 0x01; // 4 bars (right)
-						prev = 0x10; // empty
-						break;
-					case 0x01: // 4 bars (right)
-						current = 0x02; // 3 bars (left)
-						prev = 0x04; // 1 bar on the (right)
-						break;
-					case 0x02: // 3 bars (left)
-						current = 0x07; // 2 bars (left)
-						prev = 0x00; // 2 bars (right)
-						break;
-					case 0x07: // 2 bars (left)
-						current = 0x10; // empty
-						prev = 0x01; // 4 bars (right)
-						break;
-					default:
-						current = gameField[i][j];
-					  prev = gameField[i][j-1];
-						break;				
-				}
-			
-				gameField[i][j] = current;
-				lcdWriteData(current);
-				if (j != 0) {
-					gameField[i][j-1] = prev;
-					lcdWriteData(prev);
-				}
-			}
-		}
 		
 }
 

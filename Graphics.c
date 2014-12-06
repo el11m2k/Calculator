@@ -1,11 +1,14 @@
 #include "Graphics.h"
 #include "math.h"
+#include "LCD_Driver.h"
+
 
 char sinData[20] = {0}; 				// sinusoidal waveform sinData
 char sinFlat[40] = {0}; 				// array to hold new linear sinData representataion (4x2 view flattened to 8x1)
-char sin2D[8][8] = {0};					// sine sinData converted to 8x8 char representation
+unsigned char sin2D[8][8] = {0};					// sine sinData converted to 8x8 char representation
 signed char defaultVal = -1;						// default value for initSinFlat function, global because it's most likely hard-coded (not dynamic)
 
+unsigned char sin1D[64] = {0};
 
 //char period = 80; 							// 
 //char dAngle = 0; 								// value for incrementing X, a function of period
@@ -64,6 +67,17 @@ void clearSin2D(void){
 	}
 }
 
+void get1D(unsigned char* array){
+	int i,j,t =0;
+	
+	for(i=0;i<8;i++){
+		for(j=0;j<8;j++){
+			array[t] = sin2D[i][j];
+			t++;
+		}
+	}
+}
+
 // Calculates the sin2D array values from "sinFlat" array
 // Inputs: None directly, but uses "sinFlat" array
 // Outputs: None directly, but updates the global "sin2D" array
@@ -87,9 +101,48 @@ void calculateSin2D(void){
 // Algorithm to transform flat wave data into 2d char array, where each symbol is a character with bits representing pixels
 // Inputs:
 // Outputs:
-void transformAlg(void){
-	initSinFlat(defaultVal);	// initialise sinFlat array with known default value (-1)
+unsigned char* getSinwave(char period, char angle, char amplitude){
+	findWave(period, angle, amplitude);
+	initSinFlat(-1);	// initialise sinFlat array with known default value (-1)
 	buildSinFlat();						// build te sinFlat data from "sinData" global array (make 4x2 representation into 8x1)
 	clearSin2D();							// since sin2D is global, we clear it not to over-accumulate bits
 	calculateSin2D();					// build the "sin2D" - actual algorithm is explained within the function
+	while(1){}
+	//get1D(array);
+	shit();
+	return sin1D;
+}
+
+void shit(void) {
+	
+	int i,j,z;
+	
+	unsigned char current, prev;
+	
+	// Move Cursor from left to right
+	lcdWriteCommand(0x06);
+	
+	// Write Game Graphics into CGRAM
+	setCGRAMaddr(0);
+		
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 8; j++) {
+			lcdWriteData(sin2D[i][j]);
+		}
+	}
+	
+	// Move Cursor from right to left
+	lcdWriteCommand(0x06);
+	
+	lcdGoto(0, 0);
+	lcdWriteData(0x00);
+	lcdWriteData(0x01);
+	lcdWriteData(0x02);
+	lcdWriteData(0x03);
+	lcdGoto(1,0);
+	lcdWriteData(0x04);
+	lcdWriteData(0x05);
+	lcdWriteData(0x06);
+	lcdWriteData(0x07);
+	
 }

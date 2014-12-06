@@ -11,6 +11,7 @@
 #include "KEYPAD_Driver.h"
 #include "LCD_Driver.h"
 #include "tm4c123gh6pm.h"
+#include "Graphics.h"
 
 //////////////////////////////////////////////////////////
 //   Declarations Section
@@ -19,6 +20,7 @@
 //Global variables
 unsigned char key = 0;							// this is a global vvariable that stores the key(s) pressed
 unsigned char testkey = 0;
+unsigned char testkey2 = 0;
 
 //Local variables
 STATES state = ST_INIT;							// default state is for initialisation (ST_INIT)  
@@ -47,7 +49,7 @@ int main(void){
 				SysTick_Init();							// initialise SysTick
 				lcdInit();									// inititialise LCD
 				lcdClearScreen();						// clear LCD
-				//lcdWriteRamString("Hello, World!");
+			  //lcdWriteRamString("Hello, World!");
 				state = ST_MAIN_MENU; 			// next state - main menu
 			break;
 			
@@ -168,9 +170,17 @@ int regularCalculation(){
 // Inputs: None
 // Outputs: state
 int mainMenu(){
+	getSinwave(80,0,8);
+	while(1){
+	}
 	WaitForKey();															// Re-initialises the "key" flag and waits for an interrupt (puts processor to sleep)
 	if(key){																	// if key press detected
-		testkey = readKey();		
+		testkey = readKey();
+		if(testkey){
+			lcdWriteData(testkey);
+		}
+	}
+	/*
 		ic++;																		// track the number of times interrupt was triggered (DEBUGGING)!!
 		//readKey();			// read key and decode it, then store in global variable
 		switch (key){														// decide which menu option to go to
@@ -244,6 +254,7 @@ int mainMenu(){
 	}
 	return ST_MAIN_MENU;	// no button was pressed, hence continue looping in Main Menu
 												// return the state as INT (enums and integers are interchangable in this context)
+												*/
 }
 
 
