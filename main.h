@@ -252,9 +252,11 @@ typedef enum {
 				ST_SNAKE,
 } STATES; //States used in the main loop
 
-
+/* Changed by Max */
 //define true and false boolean values. False set to zero explicitly for safety. 
-typedef enum {FALSE = 0, TRUE} boolean;
+//typedef enum {FALSE = 0, TRUE} boolean; 
+
+/* for Boolean operations this lib is preferable #include <stdbool.h> */
 
 //Global variables
 extern unsigned char key;		//this variable stores key pressed
@@ -265,21 +267,14 @@ extern unsigned char key;		//this variable stores key pressed
 void PortF_Init(void);
 void Delay(void);
 void EnableInterrupts(void);
-void PLL_Init(void);
-void SysTick_Init(void);
-void SysTick_Wait_us(unsigned int delay_us);
-void SysTick_Wait_ms(unsigned int delay_ms);
 
 //Pre-defined functions
 void EnableInterrupts(void);  // Enable interrupts
 void WaitForInterrupt(void);	// Wait for interrupts
-
-
 
 //General
 int mainMenu(void);
 int regularCalculation(void);
 void clearOperationValues(void);
 float calculateResult(float* numbers, char* operations);
-char* convertIntToString(int val);
-char* convertFloatToString(double val, int decimalPlaces);
+int waveformDisplay(void);

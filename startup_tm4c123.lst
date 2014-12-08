@@ -48,32 +48,32 @@ ARM Macro Assembler    Page 1
    30 00000000         ;   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
    31 00000000         ; </h>
    32 00000000         
-   33 00000000 00000200 
+   33 00000000 00000500 
                        Stack_Size
-                               EQU              0x00000200
+                               EQU              0x00000500
    34 00000000         
    35 00000000                 AREA             STACK, NOINIT, READWRITE, ALIGN
 =3
    36 00000000         Stack_Mem
                                SPACE            Stack_Size
-   37 00000200         __initial_sp
-   38 00000200         
-   39 00000200         
-   40 00000200         ; <h> Heap Configuration
-   41 00000200         ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
-   42 00000200         ; </h>
-   43 00000200         
+   37 00000500         __initial_sp
+   38 00000500         
+   39 00000500         
+   40 00000500         ; <h> Heap Configuration
+   41 00000500         ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
+   42 00000500         ; </h>
+   43 00000500         
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-   44 00000200 00000000 
+   44 00000500 00000000 
                        Heap_Size
                                EQU              0x00000000
-   45 00000200         
-   46 00000200                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
+   45 00000500         
+   46 00000500                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
 3
    47 00000000         __heap_base
    48 00000000         Heap_Mem
@@ -1243,14 +1243,14 @@ ARM Macro Assembler    Page 20
               00000000 
               00000000 
               00000000 
-              00000200 
+              00000500 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\sta
-rtup_tm4c123.d -o.\startup_tm4c123.o -I"C:\Users\Mark\Desktop\NEW ELEC\Week 10\
-Calculator\RTE" -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include -IC:\Keil_v
-5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123 --predefine="__EVAL SETA 
-1" --predefine="_RTE_ SETA 1" --predefine="TM4C123GH6PM SETA 1" --list=.\startu
-p_tm4c123.lst RTE\Device\TM4C123GH6PM\startup_TM4C123.s
+rtup_tm4c123.d -o.\startup_tm4c123.o -IC:\Users\Maksim\Documents\GitHub\Calcula
+tor\RTE -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include -IC:\Keil_v5\ARM\PA
+CK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123 --predefine="_RTE_ SETA 1" --pred
+efine="TM4C123GH6PM SETA 1" --list=.\startup_tm4c123.lst RTE\Device\TM4C123GH6P
+M\startup_TM4C123.s
 
 
 
@@ -1274,7 +1274,7 @@ Symbol: Stack_Mem
       At line 954 in file RTE\Device\TM4C123GH6PM\startup_TM4C123.s
       At line 956 in file RTE\Device\TM4C123GH6PM\startup_TM4C123.s
 
-__initial_sp 00000200
+__initial_sp 00000500
 
 Symbol: __initial_sp
    Definitions
@@ -2564,7 +2564,7 @@ Symbol: Heap_Size
       At line 48 in file RTE\Device\TM4C123GH6PM\startup_TM4C123.s
       At line 955 in file RTE\Device\TM4C123GH6PM\startup_TM4C123.s
 
-Stack_Size 00000200
+Stack_Size 00000500
 
 Symbol: Stack_Size
    Definitions
@@ -2613,4 +2613,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-474 symbols in table
+473 symbols in table

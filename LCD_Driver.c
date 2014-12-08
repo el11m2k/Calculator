@@ -1,23 +1,23 @@
 #include "main.h"
+#include "PLL.h"
 #include "LCD_Driver.h"
 #include "Graphics.h"
 
 // Numbers correspond to CGRAM addresses
 //{,0x01,0x02,0x03,0x04,0x05,0x06,0x07}
-unsigned char gameGraphics[64];
-
-// note: 0x10 is used as an empty symbol
-
-unsigned char gameField[2][17] = { 
-	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x01},
-	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10}
+unsigned char gameGraphics[8][8] = {
+	{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},  // 4
+	{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},  // 5
+	{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},  // 6
+	{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},  // 7  
+	{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},  // 0
+	{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},  // 1
+	{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},  // 2
+	{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}   // 3
 };
 
-void displayFrame(void) {
-	
-	int i,j,z;
-	
-	unsigned char current, prev;
+void initFrame(void) {
+	int i,j = 0;
 	
 	// Move Cursor from left to right
 	lcdWriteCommand(0x06);
@@ -25,29 +25,112 @@ void displayFrame(void) {
 	// Write Game Graphics into CGRAM
 	setCGRAMaddr(0);
 	
-	//getSinwave(80,0,8);
-	
-	for (i = 0; i < 64; i++) {
-		//for (j = 0; j < 8; j++) {
-			lcdWriteData(gameGraphics[i]);
-	//	}
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 8; j++) {
+			lcdWriteData(gameGraphics[i][j]);
+		}
 	}
 	
 	// Move Cursor from right to left
-	lcdWriteCommand(0x06);
+	//lcdWriteCommand(0x06);
 	
-	lcdGoto(0, 0);
-	lcdWriteData(0x00);
-	lcdWriteData(0x01);
-	lcdWriteData(0x02);
-	lcdWriteData(0x03);
+	
 	lcdGoto(1,0);
+	lcdWriteData(0x00);
 	lcdWriteData(0x04);
-	lcdWriteData(0x05);
 	lcdWriteData(0x06);
+	lcdWriteData(0x02);
+	lcdGoto(0,0);
+	lcdWriteData(0x01);
+	lcdWriteData(0x05);
 	lcdWriteData(0x07);
+	lcdWriteData(0x03);
+	lcdGoto(1,4);
+	lcdWriteData(0x00);
+	lcdWriteData(0x04);
+	lcdWriteData(0x06);
+	lcdWriteData(0x02);
+	lcdGoto(0,4);
+	lcdWriteData(0x01);
+	lcdWriteData(0x05);
+	lcdWriteData(0x07);
+	lcdWriteData(0x03);
+	lcdGoto(1,8);
+	lcdWriteData(0x00);
+	lcdWriteData(0x04);
+	lcdWriteData(0x06);
+	lcdWriteData(0x02);
+	lcdGoto(0,8);
+	lcdWriteData(0x01);
+	lcdWriteData(0x05);
+	lcdWriteData(0x07);
+	lcdWriteData(0x03);
+	lcdGoto(1,12);
+	lcdWriteData(0x00);
+	lcdWriteData(0x04);
+	lcdWriteData(0x06);
+	lcdWriteData(0x02);
+	lcdGoto(0,12);
+	lcdWriteData(0x01);
+	lcdWriteData(0x05);
+	lcdWriteData(0x07);
+	lcdWriteData(0x03);
 	
-		
+}
+
+void clearWaveformSetting(void) {
+	lcdGoto(0,4);
+	lcdWriteData(0x01);
+	lcdWriteData(0x05);
+	lcdWriteData(0x07);
+	lcdWriteData(0x03);
+	lcdGoto(0,8);
+	lcdWriteData(0x01);
+	lcdWriteData(0x05);
+	lcdWriteData(0x07);
+	lcdWriteData(0x03);
+	lcdGoto(0,12);
+	lcdWriteData(0x01);
+	lcdWriteData(0x05);
+	lcdWriteData(0x07);
+	lcdWriteData(0x03);
+}
+
+void updateFrame(char period, float angle, char amplitude, unsigned char defaultValue, char sincos){
+	int i,j = 0;
+	
+	//setCGRAMaddr(0);
+	
+	getSinwave(period,angle,amplitude,defaultValue,sincos,gameGraphics);
+
+	
+	setCGRAMaddr(0);
+
+	for (j = 0; j < 8; j++) {
+		lcdWriteData(gameGraphics[0][j]);
+	}
+	for (j = 0; j < 8; j++) {
+		lcdWriteData(gameGraphics[4][j]);
+	}
+	for (j = 0; j < 8; j++) {
+		lcdWriteData(gameGraphics[3][j]);
+	}
+	for (j = 0; j < 8; j++) {
+		lcdWriteData(gameGraphics[7][j]);
+	}
+	for (j = 0; j < 8; j++) {
+		lcdWriteData(gameGraphics[1][j]);
+	}
+	for (j = 0; j < 8; j++) {
+		lcdWriteData(gameGraphics[5][j]);
+	}
+	for (j = 0; j < 8; j++) {
+		lcdWriteData(gameGraphics[2][j]);
+	}
+	for (j = 0; j < 8; j++) {
+		lcdWriteData(gameGraphics[6][j]);
+	}
+	
 }
 
 /** Configure Ports **/
@@ -197,7 +280,7 @@ void lcdWriteData(char c) {
 /** Write string of characters on the LCD screen **/
 void lcdWriteRamString(char *string) {
 	while(*string) {
-		if (*string != 7) lcdWriteData(*string);
+		lcdWriteData(*string);
 		string++;
 	}
 }
@@ -225,49 +308,3 @@ void lcdGoto(unsigned char row, unsigned char column) {
 void setCGRAMaddr(unsigned char address) {
 	lcdWriteCommand(0x40 + address);
 }
-
-
-/*
-int main(void) {
-	// Port Init
- 	portInit();
-	// PLL Init
-	PLL_Init();
-	//SysTick Init
-	SysTick_Init();
-	// LCD Init
-	lcdInit();
-	// Clear Screen
-	lcdClearScreen();
-	// Goto the first address in memory
-	//lcdGoto(2,1);
-	// Write a test string
-  //lcdWriteRamString("Hello, world!");
-	
-	displayFrame();
-
-	//
-	//lcdGoto(0x00);
-	//
-	//lcdWriteData(2);
-	//lcdWriteData(1);
-	
-	
-	// Stop here
-	while(1) {
-		
-			
-			//GPIO_PORTF_DATA_R = 4;
-			//SysTick_Wait_ms(1000);
-			//GPIO_PORTF_DATA_R = 0;
-			//SysTick_Wait_us(1000000);
-			
-			//displayFrame();
-		
-			//lcdClearScreen();
-	
-			//displayFrame();
-		
-	}
-}
-*/

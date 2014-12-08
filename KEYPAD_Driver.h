@@ -22,4 +22,4 @@ unsigned char interpretKeys();
 void WaitForKey(void);
 void enableRow(int i);
 void enableColumn(int i);
-
+void WaitForKeySoft(void);

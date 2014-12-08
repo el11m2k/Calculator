@@ -1,0 +1,72 @@
+Dependencies for Project 'Calculator', Target 'Target': (DO NOT MODIFY !)
+F (.\main.c)(0x54862998)(-c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork -I C:\Users\Maksim\Documents\GitHub\Calculator\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (main.h)(0x5485D27D)
+I (PLL.h)(0x5483CD1C)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5419FFEA)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5419FFEC)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5419FFEC)
+I (KEYPAD_Driver.h)(0x5485F6D9)
+I (LCD_Driver.h)(0x548624EB)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\tm4c123gh6pm.h)(0x530F0F16)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm4.h)(0x53FC944A)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419FFEA)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h)(0x53FF551A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmFunc.h)(0x53FF551A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmSimd.h)(0x53FC944A)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6F216)
+I (Graphics.h)(0x5485CF8A)
+I (Speaker.h)(0x54862866)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5419FFEC)
+I (Evaluate_expression.h)(0x5484A09F)
+F (.\KEYPAD_Driver.c)(0x54862965)(-c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork -I C:\Users\Maksim\Documents\GitHub\Calculator\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\keypad_driver.o --omf_browse .\keypad_driver.crf --depend .\keypad_driver.d)
+I (main.h)(0x5485D27D)
+I (PLL.h)(0x5483CD1C)
+I (KEYPAD_Driver.h)(0x5485F6D9)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\tm4c123gh6pm.h)(0x530F0F16)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm4.h)(0x53FC944A)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419FFEA)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h)(0x53FF551A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmFunc.h)(0x53FF551A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmSimd.h)(0x53FC944A)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6F216)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5419FFEC)
+I (Speaker.h)(0x54862866)
+F (.\LCD_Driver.c)(0x548626AC)(-c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork -I C:\Users\Maksim\Documents\GitHub\Calculator\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\lcd_driver.o --omf_browse .\lcd_driver.crf --depend .\lcd_driver.d)
+I (main.h)(0x5485D27D)
+I (PLL.h)(0x5483CD1C)
+I (LCD_Driver.h)(0x548624EB)
+I (Graphics.h)(0x5485CF8A)
+F (.\Graphics.c)(0x5485F32C)(-c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork -I C:\Users\Maksim\Documents\GitHub\Calculator\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\graphics.o --omf_browse .\graphics.crf --depend .\graphics.d)
+I (Graphics.h)(0x5485CF8A)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5419FFEA)
+I (LCD_Driver.h)(0x548624EB)
+F (.\PLL.c)(0x5485E5C7)(-c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork -I C:\Users\Maksim\Documents\GitHub\Calculator\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\pll.o --omf_browse .\pll.crf --depend .\pll.d)
+I (main.h)(0x5485D27D)
+I (PLL.h)(0x5483CD1C)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\tm4c123gh6pm.h)(0x530F0F16)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm4.h)(0x53FC944A)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419FFEA)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h)(0x53FF551A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmFunc.h)(0x53FF551A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmSimd.h)(0x53FC944A)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6F216)
+F (.\Evaluate_expression.c)(0x5485D816)(-c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork -I C:\Users\Maksim\Documents\GitHub\Calculator\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\evaluate_expression.o --omf_browse .\evaluate_expression.crf --depend .\evaluate_expression.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5419FFEC)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5419FFEC)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5419FFEC)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5419FFEC)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5419FFEA)
+F (.\Speaker.c)(0x5486288E)(-c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork -I C:\Users\Maksim\Documents\GitHub\Calculator\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\speaker.o --omf_browse .\speaker.crf --depend .\speaker.d)
+I (main.h)(0x5485D27D)
+I (Speaker.h)(0x54862866)
+I (PLL.h)(0x5483CD1C)
+F (RTE\Device\TM4C123GH6PM\startup_TM4C123.s)(0x5485D7ED)(--cpu Cortex-M4.fp -g --apcs=interwork -I C:\Users\Maksim\Documents\GitHub\Calculator\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123--pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1"--list .\startup_tm4c123.lst --xref -o .\startup_tm4c123.o --depend .\startup_tm4c123.d)
+F (RTE\Device\TM4C123GH6PM\system_TM4C123.c)(0x5483C637)(-c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork -I C:\Users\Maksim\Documents\GitHub\Calculator\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123-D_RTE_ -DTM4C123GH6PM-o .\system_tm4c123.o --omf_browse .\system_tm4c123.crf --depend .\system_tm4c123.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419FFEA)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\TM4C123.h)(0x530F0F16)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\TM4C123GH6PM.h)(0x530F0F16)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cm4.h)(0x53FC944A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmInstr.h)(0x53FF551A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmFunc.h)(0x53FF551A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include\core_cmSimd.h)(0x53FC944A)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.0.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6F216)

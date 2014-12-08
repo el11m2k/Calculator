@@ -4,9 +4,11 @@
 
 // Pre-processor Directives Section
 #include "main.h"
+#include "PLL.h"
 #include "KEYPAD_Driver.h"
 #include "tm4c123gh6pm.h"
 #include "string.h"
+#include "Speaker.h"
 
 char currentState = 0x00;						// variable to store current keypad state
 char  prevState = 0x00;							// variable to store previous keypad state
@@ -66,7 +68,7 @@ char decodeKeyPress(unsigned char k){
 			case 0x21:
 				return 'B';
 				
-			case 0xF8:
+			case 0x38: // Was F8?
 				return '7';
 				
 			case 0x34:
@@ -84,8 +86,8 @@ char decodeKeyPress(unsigned char k){
 			case 0x42:
 				return '#';
 				
-			case 0x41:
-				return 'D';
+			//case 0x41:
+			//	return 'D';
 			
 			default:
 				return 0; 		// in case there was a mismatch and no key was recognised properly, return 0
@@ -104,26 +106,75 @@ unsigned char readKey(void){
 	}
 	else{
 	if(prevState == 0x48){	
-		switch(currentState){													// check what was the second key
-			case 0x11:	//A
-				returnValue = '(';
+		switch(currentState){ // check what was the second key
+			case 0x11:	
+				returnValue = 104;
 			break;
-			case 0x21:	//B
-				returnValue = ')';
+			case 0x21:	
+				returnValue = 105;
 			break;
-			case 0x31:	//C
-				returnValue = '.';
+			case 0x31:	
+				returnValue = 106;
 			break;
-			case 0x49:	//D
-				returnValue = '^';
+			case 0x12:
+				returnValue = 108;
+			break;
+			case 0x22:
+				returnValue = 109;
+			break;
+			case 0x32:
+				returnValue = 110;
+			break;
+			case 0x14:
+				returnValue = 111;
+			break;
+			case 0x24:
+				returnValue = 112;
+			break;
+			case 0x34:
+				returnValue = 113;
 			break;
 			
 			default:
 				returnValue = 0;
 			break;
 		}
-	}
-	else if(currentState == prevState){
+	} else if(prevState == 0x41){	
+		switch(currentState){	// check what was the second key
+			case 0x12:
+				returnValue = 97;
+			break;
+			case 0x22:
+				returnValue = 98;
+			break;
+			case 0x14:
+				returnValue = 99;
+			break;
+			case 0x24:
+				returnValue = 100;
+			break;
+			case 0x34:
+				returnValue = 101;
+			break;
+			case 0x28:
+				returnValue = 102;
+			break;
+			case 0x18:
+				returnValue = 103;
+			break;
+			case 0x38:
+				returnValue = 107;
+			break;
+			case 0x32:
+				returnValue = 114;
+			break;
+			
+			
+			default:
+				returnValue = 0;
+			break;
+		}
+	} else if(currentState == prevState){
 		returnValue = 0;
 	}
 	else if(currentState && currentState!=prevState){
@@ -189,7 +240,7 @@ void keypadInit(unsigned char N,unsigned char M){
 // Input: None
 // Output: None
 void GPIOB_Handler(void){
-	SysTick_Wait_ms(10);																			// de-bounce
+	SysTick_Wait_ms(10);																		// de-bounce
 	key = 1;																									// flag the "key" variable (any value would do, as long it's not zero)
 	GPIOB->ICR = ((1UL<<0)|(1UL<<1)|(1UL<<2)|(1UL<<3));      	// acknowledge flags for PB0-3
 }
@@ -233,6 +284,15 @@ void WaitForKey(void){
 	key = 0; 																								// re-set the global flag value
 	GPIOB->DATA |= ((1UL<<4)|(1UL<<5)|(1UL<<6)|(1UL<<7));		// clear PB0,PB1 so they are ready to take inputs (Inverted logic due to internal PULL-UPs)
  	__wfi();  																							// wait for interrupt
+}
+
+// Waits for user input from keyboard but does not put processor to sleep (less efficient but allows to update the LCD continuously)
+// Inputs: None
+// Outputs: None
+// Once key is pressed it is written to the global variable "key", but before it is re-set down below for every read
+void WaitForKeySoft(void){
+	//key = 0; 																								// read the key value
+	GPIOB->DATA |= ((1UL<<4)|(1UL<<5)|(1UL<<6)|(1UL<<7));		// clear PB0,PB1 so they are ready to take inputs (Inverted logic due to internal PULL-UPs)
 }
 
 // Sets a given row high

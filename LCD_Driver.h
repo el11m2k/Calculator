@@ -15,7 +15,9 @@ void lcdWriteData(char c);
 void lcdGoto(unsigned char row, unsigned char column);
 void lcdWriteRamString(char *string);
 void welcomeMessage(void);
-void displayFrame(void);
+void initFrame(void);
+void updateFrame(char period, float angle, char amplitude, unsigned char defaultValue, char sincos);
+void clearWaveformSetting(void);
 
 //CGRAM 
 void setCGRAMaddr(unsigned char address);
